@@ -46,3 +46,5 @@ driver.find_element(By.ID, "ap-other-signin-issues-link")
 driver.find_element(By.ID, "createAccountSubmit")
 
 sleep(3)
+
+driver.quit()
