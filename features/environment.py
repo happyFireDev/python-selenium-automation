@@ -14,7 +14,6 @@ def browser_init(context):
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
 
-
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
     browser_init(context)
