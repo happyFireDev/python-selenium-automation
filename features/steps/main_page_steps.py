@@ -6,7 +6,6 @@ from time import sleep
 from pages.main_page import MainPage
 
 SEARCH_FIELD = (By.ID, 'search')
-SEARCH_BTN = (By.XPATH, "//button[@data-test='@web/Search/SearchButton']")
 CART_ICON = (By.CSS_SELECTOR, "[data-test='@web/CartLink']")
 ADD_TO_CART_FIRST_PRODUCT = (By.CSS_SELECTOR, "[id*='addToCartButton']")
 HEADER_LINKS = (By.CSS_SELECTOR, "[id*='utilityNav']")
@@ -27,8 +26,7 @@ def search_product(context, search_word):
 
 @when('Click on shopping cart icon')
 def click_cart(context):
-    context.app.main_page.click_shopping_cart_icon()
-    # context.driver.find_element(*CART_ICON).click()
+    context.app.header.click_cart_icon()
 
 
 @then('Verify at least 1 link shown')

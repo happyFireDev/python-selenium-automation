@@ -11,6 +11,6 @@ class CartPage(Page):
 
     def verify_cart_empty_message(self):
         expected_result = 'Your cart is empty'
-        actual_result = self.find_element(self.CART_EMPTY_MSG).text
+        actual_result = self.find_element(*self.CART_EMPTY_MSG).text
         assert expected_result == actual_result, \
             f'Expected {expected_result} did not match actual {actual_result}'
