@@ -1,5 +1,5 @@
 Feature: Target search test cases
-
+#
 #  Scenario: User can search for a tea on Target
 #    Given Open target main page
 #    When Search for tea
@@ -9,11 +9,11 @@ Feature: Target search test cases
 #    Given Open target main page
 #    When Search for iPhone
 #    Then Verify correct search results shown for iPhone
-#
-#  Scenario: User can search for a dress on Target
-#    Given Open target main page
-#    When Search for dress
-#    Then Verify correct search results shown for dress
+
+  Scenario: User can search for a dress on Target
+    Given Open target main page
+    When Search for dress
+    Then Verify correct search results shown for dress
 
   Scenario Outline: User can search for a product on Target
     Given Open target main page

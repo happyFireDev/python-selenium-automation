@@ -71,6 +71,8 @@ def verify_search_results_name_img(context):
 
 @then('Verify correct search results shown for {expected_text}')
 def verify_search_results(context, expected_text):
-    actual_text = context.driver.find_element(*SEARCH_RESULTS_TEXT).text
-    assert expected_text in actual_text, f'Error. Text {expected_text} not in {actual_text}'
+    context.app.search_results_page.verify_search_results_text( expected_text)
+
+    # actual_text = context.driver.find_element(*SEARCH_RESULTS_TEXT).text
+    # assert expected_text in actual_text, f'Error. Text {expected_text} not in {actual_text}'
 
