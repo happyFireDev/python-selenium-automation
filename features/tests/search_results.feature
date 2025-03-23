@@ -15,21 +15,30 @@ Feature: Target search test cases
 #    When Search for dress
 #    Then Verify correct search results shown for dress
 
-#  Scenario Outline: User can search for a product on Target
-#    Given Open target main page
-#    When Search for <search_word>
-#    Then Verify correct search results shown for <expected_text>
-#    Examples:
-#    |search_word  |expected_text  |
-#    |tea          |tea            |
-#    |iPhone       |iPhone         |
-#    |dress        |dress          |
+  Scenario Outline: User can search for a product on Target
+    Given Open target main page
+    When Search for <search_word>
+    Then Verify correct search results shown for <expected_text>
+    Examples:
+    |search_word  |expected_text  |
+    |tea          |tea            |
+    |iPhone       |iPhone         |
+    |dress        |dress          |
 
    Scenario: Adding target product into cart
 
       Given Open target main page
-      When Search for tea
-      Then Click on first product on search results page
-      And Click add to cart in side-menu pop-up
+      When Search for plates
+      And Click Add to Cart button
+      And Store product name
+      And Click Add to Cart in side-menu pop-up
       Given Open target shopping cart page
       Then Verify cart has 1 product(s)
+      And Verify cart has correct product
+
+
+   Scenario: Verify that every product on Target search results page has product image and name
+
+      Given Open target main page
+      When Search for fish
+      And Verify search results have a product image and name

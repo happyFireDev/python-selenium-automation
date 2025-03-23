@@ -1,10 +1,12 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 from behave import given, when, then
 from time import sleep
 
 SEARCH_FIELD = (By.ID, 'search')
 SEARCH_BTN = (By.XPATH, "//button[@data-test='@web/Search/SearchButton']")
 CART_ICON = (By.CSS_SELECTOR, "[data-test='@web/CartLink']")
+ADD_TO_CART_FIRST_PRODUCT = (By.CSS_SELECTOR, "[id*='addToCartButton']")
 HEADER_LINKS = (By.CSS_SELECTOR, "[id*='utilityNav']")
 
 
@@ -17,7 +19,9 @@ def open_target_main(context):
 def search_product(context, search_word):
     context.driver.find_element(*SEARCH_FIELD).send_keys(search_word)
     context.driver.find_element(*SEARCH_BTN).click()
-    sleep(6)
+
+    context.driver.wait.until(EC.presence_of_element_located(ADD_TO_CART_FIRST_PRODUCT), message = 'Error - could not find add to cart buttons after search')
+
 
 @when('Click on shopping cart icon')
 def click_cart(context):
