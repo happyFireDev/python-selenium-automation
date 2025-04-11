@@ -21,3 +21,16 @@ Feature: User to sign in
     Then Verify Terms and Conditions page is opened
     And Close terms and conditions window
     And Switch back to signin original window
+
+
+  Scenario: Test user account signing in verifies that an error message is shown when wrong password is entered
+
+    Given Open target main page
+    When Click on sign-in button
+    When Click on sign-in for right side navigation menu
+    Then Verify Sign In form opened
+    And Input email on SignIn page
+    And Click sign in btn on sign in
+    And Input incorrect password on SignIn page
+    And Click sign in btn on sign in
+    Then Verify error message is shown from incorrect pw

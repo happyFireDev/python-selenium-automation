@@ -24,6 +24,10 @@ class SignInPage(Page):
         self.verify_text(expected_text)
 
 
+    def verify_error_message_is_shown_from_incorrect_pw(self,expected_error_mgs_text, *locator):
+        self.verify_text(expected_error_mgs_text, *locator)
+
+
     def verify_terms_and_conditions_page_is_opened(self, url_slug):
         self.verify_partial_url(url_slug)
 
@@ -33,7 +37,7 @@ class SignInPage(Page):
 
 
     def input_password_on_sign_in(self, password, *locator):
-        self.input_text(password, *locator)
+        self.slow_type(password, *locator)
 
 
     def switch_to_signin_pg_windows(self):
@@ -43,8 +47,10 @@ class SignInPage(Page):
     def store_original_signin_window(self):
         self.switch_to_new_window()
 
+
     def close_terms_and_conditions_window(self):
         self.close()
+
 
     def return_to_original_sing_in_window(self, context):
         self.switch_to_window_by_id(context.original_window)

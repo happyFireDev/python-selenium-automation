@@ -1,13 +1,15 @@
-from selenium.common import ElementClickInterceptedException, StaleElementReferenceException
 from selenium.webdriver.common.by import By
+from selenium.common import ElementClickInterceptedException, StaleElementReferenceException
 from pages.base_page import Page
+from time import sleep
 
 
 class SearchResultsPage(Page):
 
     ADD_TO_CART_FIRST_PRODUCT = (By.CSS_SELECTOR, "[id*='addToCartButton']")
     SEARCH_RESULTS_TEXT = (By.XPATH, "//div[@data-test='lp-resultsCount']")
-
+    FAVORITES_BTN = (By.CSS_SELECTOR, "[data-test='FavoritesButton']")
+    FAVORITES_TOOLTIP_TEXT = (By.XPATH, "//*[text()='Click to sign in and save']")
 
     def verify_search_results_text(self, expected_text):
         self.verify_partial_text(expected_text, *self.SEARCH_RESULTS_TEXT)
@@ -40,3 +42,10 @@ class SearchResultsPage(Page):
             self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
 
             element.click()
+
+    def hover_over_favorites_icon(self):
+        self.hover_over_element(*self.FAVORITES_BTN)
+
+
+    def verify_fav_tooltip(self):
+        self.wait_until_visible(*self.FAVORITES_TOOLTIP_TEXT)

@@ -1,3 +1,6 @@
+import time
+
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -23,6 +26,14 @@ class Page:
 
     def input_text(self, text, *locator):
         self.driver.find_element(*locator).send_keys(text)
+
+    def slow_type(self, text, *locator, delay=0.1):
+        self.wait.until(EC.presence_of_element_located(locator))
+        element = self.driver.find_element(*locator)
+        element.clear()
+        for char in text:
+            element.send_keys(char)
+            time.sleep(delay)
 
     def wait_until_clickable(self, *locator):
         self.wait.until(
@@ -62,6 +73,12 @@ class Page:
         print('Switching to new window: ', window_id)
         self.driver.switch_to.window(window_id)
 
+    def hover_over_element(self, *locator):
+        element = self.find_element(*locator)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element)
+        actions.perform()
+
     def verify_text(self, expected_text, *locator):
         actual_text = self.find_element(*locator).text
         assert expected_text == actual_text, f'Expected text {expected_text} did not match actual {actual_text}'
@@ -87,3 +104,6 @@ class Page:
 
     def quit(self):
         self.driver.quit()
+
+    def is_element_present(self, *locator):
+        return len(self.driver.find_elements(*locator)) > 0

@@ -18,6 +18,7 @@ SEARCH_PRODUCT_IMG = (By.CSS_SELECTOR, "img")
 def click_add_to_cart_for_first_product(context):
     context.app.search_results_page.click_add_to_cart_for_first_product()
 
+
 @when('Store product name')
 def store_product_name(context):
     context.app.side_nav_menu.store_product_name(context)
@@ -39,6 +40,15 @@ def verify_search_results_name_img(context):
         assert title_element, f"product title not found {title_element}"
         # Find the image inside each product
         product.find_element(*SEARCH_PRODUCT_IMG)
+
+@when('Hover favorites icon')
+def hover_over_favorites_icon(context):
+    context.app.search_results_page.hover_over_favorites_icon()
+
+
+@then('Favorites tooltip is shown')
+def verify_fav_tooltip(context):
+    context.app.search_results_page.verify_fav_tooltip()
 
 
 @then('Verify correct search results shown for {expected_text}')

@@ -37,9 +37,16 @@ Feature: Target search test cases
       Then Verify cart has 1 product(s)
       And Verify cart has correct product
 
-#
-#   Scenario: Verify that every product on Target search results page has product image and name
-#
-#      Given Open target main page
-#      When Search for fish
-#      And Verify search results have a product image and name
+
+   Scenario: Verify that every product on Target search results page has product image and name
+
+      Given Open target main page
+      When Search for fish
+      And Verify search results have a product image and name
+
+
+   Scenario: User can see favorites tooltip for search results
+      Given Open Target main page
+      When Search for tea
+      And Hover favorites icon
+      Then Favorites tooltip is shown
